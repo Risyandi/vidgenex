@@ -1,0 +1,40 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "a backend engine for generator and extractor metadata from video file or link.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --ext js,ts src/index.js",
+    "client": "npm start --prefix ../client",
+    "dev": "nodemon --ext js,ts src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Risyandi/vidgenex.git"
+  },
+  "keywords": [
+    "video",
+    "generator",
+    "extractor"
+  ],
+  "author": "risyandi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Risyandi/vidgenex/issues"
+  },
+  "homepage": "https://github.com/Risyandi/vidgenex#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-status": "^1.7.4",
+    "joi": "^17.13.1",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0",
+    "winston": "^3.13.0"
+  }
+}
