@@ -8,25 +8,25 @@ const { videoController } = require("../../controllers");
 // generator
 router
   .route("/generator")
-  .post(validate(videoValidation.createVideo), videoController.createVideo)
-  .get(validate(videoValidation.getVideos), videoController.getVideos);
+  .post(validate(videoValidation.createGeneratorVideo), videoController.createGeneratorVideo)
+  .get(validate(videoValidation.getGeneratorVideos), videoController.getGeneratorVideos);
 
 router
   .route("/:id")
-  .get(validate(videoValidation.getVideo), videoController.getVideo)
-  .patch(validate(videoValidation.updateVideo), videoController.updateVideo)
-  .delete(validate(videoValidation.deleteVideo), videoController.deleteVideo);
+  .get(validate(videoValidation.getGeneratorVideo), videoController.getGeneratorVideo)
+  .patch(validate(videoValidation.updateGeneratorVideo), videoController.updateGeneratorVideo)
+  .delete(validate(videoValidation.deleteGeneratorVideo), videoController.deleteGeneratorVideo);
 
 // extractor
 router
   .route("/extractor")
-  .post(validate(videoValidation.createVideo), videoController.createVideo)
-  .get(validate(videoValidation.getVideos), videoController.getVideos);
+  .post(validate(videoValidation.createExtractorVideo), videoController.createExtractorVideo)
+  .get(validate(videoValidation.getExtractorVideos), videoController.getExtractorVideos);
 
 router
   .route("/:id")
-  .get(validate(videoValidation.getVideo), videoController.getVideo)
-  .patch(validate(videoValidation.updateVideo), videoController.updateVideo)
-  .delete(validate(videoValidation.deleteVideo), videoController.deleteVideo);
+  .get(validate(videoValidation.getExtractorVideo), videoController.getExtractorVideo)
+  .patch(validate(videoValidation.updateExtractorVideo), videoController.updateExtractorVideo)
+  .delete(validate(videoValidation.deleteExtractorVideo), videoController.deleteExtractorVideo);
 
 module.exports = router;
