@@ -1,6 +1,7 @@
 const winston = require("winston");
 const config = require("./config");
 
+// custom winston format
 const enumerateErrorFormat = winston.format((info) => {
   if (info instanceof Error) {
     Object.assign(info, { message: info.stack });
@@ -8,6 +9,7 @@ const enumerateErrorFormat = winston.format((info) => {
   return info;
 });
 
+// create logger
 const logger = winston.createLogger({
   level: config.env === "dev" ? "debug" : "info",
   format: winston.format.combine(
