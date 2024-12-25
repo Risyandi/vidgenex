@@ -1,21 +1,23 @@
 const mongoose = require("mongoose");
 const httpStatus = require("http-status");
 const { config, logger } = require("../config");
-const ApiError = require("../utils/apiErrror");
+const apiError = require("../utils/apiErrror");
 
+// convert error to ApiError
 const errorConverter = (err, req, res, next) => {
   let error = err;
-  if (!(error instanceof ApiError)) {
+  if (!(error instanceof apiError)) {
     const statusCode =
       error.statusCode || error instanceof mongoose.Error
         ? httpStatus.BAD_REQUEST
         : httpStatus.INTERNAL_SERVER_ERROR;
     const message = error.message || httpStatus[statusCode];
-    error = new ApiError(statusCode, message, false);
+    error = new apiError(statusCode, message, false);
   }
   next(error);
 };
 
+// handle error
 const errorHandler = async (err, req, res, next) => {
   let { statusCode, message } = err;
   if (config.env === "prod" && !err.isOperational) {
