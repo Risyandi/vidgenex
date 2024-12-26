@@ -12,7 +12,7 @@ router
   .get(validate(videoValidation.getGeneratorVideos), videoController.getGeneratorVideos);
 
 router
-  .route("/:id")
+  .route("/generator/:videoId")
   .get(validate(videoValidation.getGeneratorVideo), videoController.getGeneratorVideo)
   .patch(validate(videoValidation.updateGeneratorVideo), videoController.updateGeneratorVideo)
   .delete(validate(videoValidation.deleteGeneratorVideo), videoController.deleteGeneratorVideo);
@@ -24,7 +24,7 @@ router
   .get(validate(videoValidation.getExtractorVideos), videoController.getExtractorVideos);
 
 router
-  .route("/:id")
+  .route("/extractor/:videoId")
   .get(validate(videoValidation.getExtractorVideo), videoController.getExtractorVideo)
   .patch(validate(videoValidation.updateExtractorVideo), videoController.updateExtractorVideo)
   .delete(validate(videoValidation.deleteExtractorVideo), videoController.deleteExtractorVideo);

@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 const paginate = (schema) => {
   /**
    * Query for documents with pagination
@@ -16,12 +14,7 @@ const paginate = (schema) => {
    * @property {number} totalResults - Total number of documents
    * @returns {Promise<QueryResult>}
    */
-
   schema.statics.paginate = async function (filter, options, type = "find") {
-
-    // show only data not deleted and soft deleted
-    Object.assign(filter, { isDeleted: false });
-
     // filter for sorting ascending and descending
     let sort = "";
     if (options.sortBy) {
@@ -47,17 +40,19 @@ const paginate = (schema) => {
     const skip = (page - 1) * limit;
 
     let countPromise, docsPromise;
-    
+
     // query for data
-    if (type == 'aggregate') {
-      filter.push({ $setWindowFields: { output: { totalData: { $count: {} } } } })
-      docsPromise = this.aggregate(filter)
+    if (type == "aggregate") {
+      filter.push({
+        $setWindowFields: { output: { totalData: { $count: {} } } },
+      });
+      docsPromise = this.aggregate(filter);
     } else {
       // count all data after filter
-      countPromise = this.countDocuments(filter).exec()
-      docsPromise = this.find(filter)
+      countPromise = this.countDocuments(filter).exec();
+      docsPromise = this.find(filter);
     }
-    docsPromise = docsPromise.sort(sort).skip(skip).limit(limit)
+    docsPromise = docsPromise.sort(sort).skip(skip).limit(limit);
 
     // populate data with relations collection if type is find
     if (options.populate && type == "find") {
@@ -75,10 +70,10 @@ const paginate = (schema) => {
 
     return Promise.all([countPromise, docsPromise]).then((values) => {
       let [totalAllData, results] = values;
-      if (type == 'aggregate') {
-        totalAllData = results[0]?.totalData || 0
+      if (type == "aggregate") {
+        totalAllData = results[0]?.totalData || 0;
       }
-      
+
       const totalPages = Math.ceil(totalAllData / limit);
       const totalData = Math.ceil(totalAllData);
       const totalResults = results.length;

@@ -13,24 +13,41 @@ const createGeneratorVideo = catchAsync(async (req, res) => {
       "failed to generate video thumbnail"
     );
   }
+
   res.status(httpStatus.CREATED).send(video);
 });
 
 const getGeneratorVideos = catchAsync(async (req, res) => {
-  console.log("risyandi ~ getUsers ~ req, res:");
-  return;
+  const filter = pick(req.query, ["videoUrl", "thumbnailPath", "videoPath"]);
+  const options = pick(req.query, ["sortBy", "limit", "page"]);
+  const result = await videoService.getGeneratorVideos(filter, options);
+
+  res.status(httpStatus.OK).send(result);
 });
 
 const getGeneratorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ getUser ~ req, res:", req, res);
+  const result = await videoService.getGeneratorVideosById(req.params.videoId);
+
+  res.status(httpStatus.OK).send(result);
 });
 
 const updateGeneratorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ updateUser ~ req, res:", req, res);
+  let dataBody = req.body;
+  let videoId = req.params.videoId;
+  const result = await videoService.updateGeneratorVideosById(
+    videoId,
+    dataBody
+  );
+
+  res.status(httpStatus.OK).send(result);
 });
 
 const deleteGeneratorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ deleteUser ~ req, res:", req, res);
+  const result = await videoService.deleteGeneratorVideosById(
+    req.params.videoId
+  );
+
+  res.status(httpStatus.NO_CONTENT).send(result);
 });
 
 // Extractor
