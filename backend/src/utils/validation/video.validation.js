@@ -42,7 +42,11 @@ const deleteGeneratorVideo = {
 };
 
 // Extractor
-const createExtractorVideo = {};
+const createExtractorVideo = {
+  body: Joi.object().keys({
+    videoUrl: Joi.string().required(),
+  }),
+};
 
 const getExtractorVideos = {
   query: Joi.object().keys({

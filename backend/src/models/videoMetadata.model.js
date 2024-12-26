@@ -2,23 +2,29 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const { toJSON, paginate } = require("./plugins");
 
+const detailMetadataVideoSchema = new Schema(
+  {
+    streams: {
+      type: [],
+      default: [],
+    },
+    format: {
+      type: {},
+      default: {},
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const videoMetadataSchema = Schema(
   {
-    duration: {
-      type: String,
-      required: true,
-    },
-    resolution: {
+    videoPath: {
       type: String,
     },
-    codec: {
-      type: String,
-    },
-    bitrate: {
-      type: String,
-    },
-    framerate: {
-      type: String,
+    metadata: {
+      type: detailMetadataVideoSchema,
     },
     deletedBy: {
       type: String,
@@ -51,19 +57,8 @@ videoMetadataSchema.plugin(paginate);
 // full text search
 videoMetadataSchema.index({ "$**": "text" });
 
-videoMetadataSchema.statics.isMetadataTaken = async function (
-  metaData,
-  excludeVideoId
-) {
-  const metadataFind = await this.findOne({
-    metaData,
-    _id: { $ne: excludeVideoId },
-  });
-  return !!metadataFind;
-};
-
 /**
- * @typedef VideoThumbnail
+ * @typedef VideoMetadata
  */
 const VideoMetadata = model("Video-Metadata", videoMetadataSchema);
 

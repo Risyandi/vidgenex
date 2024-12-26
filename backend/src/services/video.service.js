@@ -1,12 +1,17 @@
 const fs = require("fs");
-const ffmpeg = require("fluent-ffmpeg");
 const crypto = require("crypto");
 const path = require("path");
-const axios = require("axios");
 const httpStatus = require("http-status");
-const { VideoThumbnail } = require("../models");
+const { VideoThumbnail, VideoMetadata } = require("../models");
 const apiError = require("../utils/apiErrror");
+const {
+  downloadVideo,
+  extractVideoKeyFrames,
+  convertVideoToGift,
+  extractVideoMetadata,
+} = require("../utils/video");
 
+// generator
 const createGeneratorVideo = async (req, res) => {
   try {
     // setup directories
@@ -21,10 +26,6 @@ const createGeneratorVideo = async (req, res) => {
 
     // generate unique file paths
     const { videoUrl, frameCount } = req.body;
-    console.log(
-      "risyandi ~ createGeneratorVideo ~ await VideoThumbnail.isVideoTaken(videoUrl):",
-      await VideoThumbnail.isVideoTaken(videoUrl)
-    );
     if (await VideoThumbnail.isVideoTaken(videoUrl)) {
       let videoThumbnail = await getVideoThumbByCustomField({ videoUrl });
 
@@ -42,18 +43,11 @@ const createGeneratorVideo = async (req, res) => {
     await downloadVideo(videoUrl, videoPath);
 
     // extract keyframes
-    await extractKeyFrames(videoPath, outputDir, frameCount);
+    await extractVideoKeyFrames(videoPath, outputDir, frameCount);
 
     // create animated thumbnail (e.g., GIF from keyframes)
     const gifPath = path.join(outputDir, "thumbnail.gif");
-    await new Promise((resolve, reject) => {
-      ffmpeg()
-        .input(`${outputDir}/frame-%d.png`) // use pattern matching for multiple frames (e.g., frame-1.png, frame-2.png)
-        .inputOptions("-framerate 5") // optional: set frame rate for the GIF
-        .on("end", resolve)
-        .on("error", reject)
-        .save(gifPath); // Save the GIF to the specified path
-    });
+    await convertVideoToGift(outputDir, gifPath);
 
     // create the result in MongoDB
     const formDataThumbnail = {
@@ -107,46 +101,80 @@ const deleteGeneratorVideosById = async (thumbnailId) => {
   return videoThumbnail;
 };
 
-const downloadVideo = async (url, outputPath) => {
-  const response = await axios({
-    url,
-    method: "GET",
-    responseType: "stream",
-  });
+// extractor
+const createExtractorVideo = async (req, res) => {
+  try {
+    // setup directories
+    const directoryVideo = "./assets/video";
 
-  const writer = fs.createWriteStream(outputPath);
-  response.data.pipe(writer);
+    // checking if directory exists
+    if (!fs.existsSync(directoryVideo)) {
+      fs.mkdirSync(directoryVideo, { recursive: true });
+    }
 
-  return new Promise((resolve, reject) => {
-    writer.on("finish", resolve);
-    writer.on("error", reject);
-  });
-};
+    const { videoUrl } = req.body;
+    const videoHash = crypto.createHash("md5").update(videoUrl).digest("hex");
+    const videoPath = path.join(directoryVideo, `${videoHash}.mp4`);
 
-// function to extract keyframes
-const extractKeyFrames = async (videoPath, outputDir, frameCount = 5) => {
-  return new Promise((resolve, reject) => {
-    const keyFramePaths = [];
-    ffmpeg(videoPath)
-      .on("end", () => resolve(keyFramePaths))
-      .on("error", reject)
-      .screenshots({
-        count: frameCount,
-        folder: outputDir,
-        filename: "frame-%i.png",
-      })
-      .on("filenames", (filenames) => {
-        filenames.forEach((filename) => {
-          keyFramePaths.push(path.join(outputDir, filename));
-        });
-      });
-  });
+    // download video
+    await downloadVideo(videoUrl, videoPath);
+
+    // extract keyframes
+    let videoMetadata = await extractVideoMetadata(videoPath);
+
+    // create the result in MongoDB
+    const videoMetadataDocument = {
+      videoPath,
+      metadata: {
+        streams: videoMetadata.streams.map((data) => ({
+          index: data.index,
+          codec_name: data.codec_name,
+          codec_long_name: data.codec_long_name,
+          profile: data.profile,
+          codec_type: data.codec_type,
+          codec_tag_string: data.codec_tag_string,
+          codec_tag: data.codec_tag,
+          sample_fmt: data.sample_fmt,
+          sample_rate: data.sample_rate,
+          channels: data.channels,
+          channel_layout: data.channel_layout,
+          bits_per_sample: data.bits_per_sample,
+          initial_padding: data.initial_padding,
+          id: data.id,
+          r_frame_rate: data.r_frame_rate,
+          avg_frame_rate: data.avg_frame_rate,
+          time_base: data.time_base,
+          start_pts: data.start_pts,
+          start_time: data.start_time,
+          duration_ts: data.duration_ts,
+          duration: data.duration,
+          bit_rate: data.bit_rate,
+          max_bit_rate: data.max_bit_rate,
+          bits_per_raw_sample: data.bits_per_raw_sample,
+          nb_frames: data.nb_frames,
+          nb_read_frames: data.nb_read_frames,
+          nb_read_packets: data.nb_read_packets,
+          extradata_size: data.extradata_size,
+        })),
+        format: { ...videoMetadata.format },
+      },
+    };
+    return VideoMetadata.create(videoMetadataDocument);
+  } catch (error) {
+    throw new apiError(
+      httpStatus.BAD_REQUEST,
+      `Error extracting video metadata: ${error.message}`
+    );
+  }
 };
 
 module.exports = {
+  // generator
   createGeneratorVideo,
   getGeneratorVideos,
   getGeneratorVideosById,
   updateGeneratorVideosById,
   deleteGeneratorVideosById,
+  // extractor
+  createExtractorVideo,
 };
