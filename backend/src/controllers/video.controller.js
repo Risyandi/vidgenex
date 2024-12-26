@@ -52,7 +52,15 @@ const deleteGeneratorVideo = catchAsync(async (req, res) => {
 
 // Extractor
 const createExtractorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ createUser ~ req, res:", req, res);
+  const video = await videoService.createExtractorVideo(req, res);
+  if (!video) {
+    throw new apiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "failed to extractor video metadata"
+    );
+  }
+
+  res.status(httpStatus.CREATED).send(video);
 });
 
 const getExtractorVideos = catchAsync(async (req, res) => {

@@ -10,4 +10,36 @@ video file or set of video frames.
 
 ## Installation
 
-To install the package, use the following command:
+### Backend
+
+To install the package, and running the application backend, use the following command:
+
+1. Select folder and Installing dependency or library used in backend.
+
+   - `$ cd backend`
+   - `$ npm install`
+
+2. Running apps in development mode
+
+   - `$ npm run dev`
+
+3. Running apps in production mode
+
+   - `$ npm run start`
+
+### Frontend
+
+To install the package, and running the application frontend, use the following command:
+
+1. Select folder and Installing dependency or library used in backend.
+
+   - `$ cd frontend`
+   - `$ npm install`
+
+2. Running apps in development mode
+
+   - `$ npm run dev`
+
+3. Running apps in production mode
+
+   - `$ npm run start`
