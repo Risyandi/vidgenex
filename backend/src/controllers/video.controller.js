@@ -64,19 +64,36 @@ const createExtractorVideo = catchAsync(async (req, res) => {
 });
 
 const getExtractorVideos = catchAsync(async (req, res) => {
-  console.log("risyandi ~ getUsers ~ req, res:", req, res);
+  const filter = pick(req.query, ["videoPath"]);
+  const options = pick(req.query, ["sortBy", "limit", "page"]);
+  const result = await videoService.getExtractorVideos(filter, options);
+
+  res.status(httpStatus.OK).send(result);
 });
 
 const getExtractorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ getUser ~ req, res:", req, res);
+  const result = await videoService.getExtractorVideosById(req.params.videoId);
+
+  res.status(httpStatus.OK).send(result);
 });
 
 const updateExtractorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ updateUser ~ req, res:", req, res);
+  let dataBody = req.body;
+  let videoId = req.params.videoId;
+  const result = await videoService.updateExtractorVideosById(
+    videoId,
+    dataBody
+  );
+
+  res.status(httpStatus.OK).send(result);
 });
 
 const deleteExtractorVideo = catchAsync(async (req, res) => {
-  console.log("risyandi ~ deleteUser ~ req, res:", req, res);
+  const result = await videoService.deleteExtractorVideosById(
+    req.params.videoId
+  );
+
+  res.status(httpStatus.NO_CONTENT).send(result);
 });
 
 module.exports = {

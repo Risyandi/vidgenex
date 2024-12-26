@@ -168,6 +168,38 @@ const createExtractorVideo = async (req, res) => {
   }
 };
 
+const getExtractorVideos = async (filter, options) => {
+  let queryFilter = {};
+  Object.entries(filter).forEach(([key, value]) => {
+    if (value !== undefined) {
+      let filterKey = {};
+      filterKey[key] = value;
+      Object.assign(queryFilter, filterKey);
+    }
+  });
+
+  const videoMetadata = await VideoMetadata.paginate(queryFilter, options);
+  return videoMetadata;
+};
+
+const getExtractorVideosById = async (videoId) => {
+  return VideoMetadata.findById(videoId);
+};
+
+const updateExtractorVideosById = async (videoId, videoExtractorBody) => {
+  const videoExtractor = await getExtractorVideosById(videoId);
+  Object.assign(videoExtractor, videoExtractorBody);
+
+  await videoExtractor.save();
+  return videoExtractor;
+};
+
+const deleteExtractorVideosById = async (videoId) => {
+  const videoMetadata = await getExtractorVideosById(videoId);
+  await videoMetadata.deleteOne();
+  return videoMetadata;
+};
+
 module.exports = {
   // generator
   createGeneratorVideo,
@@ -177,4 +209,8 @@ module.exports = {
   deleteGeneratorVideosById,
   // extractor
   createExtractorVideo,
+  getExtractorVideos,
+  getExtractorVideosById,
+  updateExtractorVideosById,
+  deleteExtractorVideosById,
 };
