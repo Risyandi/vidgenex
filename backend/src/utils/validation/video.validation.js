@@ -28,6 +28,11 @@ const updateGeneratorVideo = {
   params: Joi.object().keys({
     videoId: Joi.required().custom(objectId),
   }),
+  body: Joi.object().keys({
+    videoUrl: Joi.string().required(),
+    thumbnailPath: Joi.string(),
+    videoPath: Joi.string(),
+  })
 };
 
 const deleteGeneratorVideo = {

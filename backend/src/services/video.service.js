@@ -71,8 +71,40 @@ const createGeneratorVideo = async (req, res) => {
   }
 };
 
+const getGeneratorVideos = async (filter, options) => {
+  let queryFilter = {};
+  Object.entries(filter).forEach(([key, value]) => {
+    if (value !== undefined) {
+      let filterKey = {};
+      filterKey[key] = value;
+      Object.assign(queryFilter, filterKey);
+    }
+  });
+
+  const videoThumbnail = await VideoThumbnail.paginate(queryFilter, options);
+  return videoThumbnail;
+};
+
+const getGeneratorVideosById = async (thumbnailId) => {
+  return VideoThumbnail.findById(thumbnailId);
+};
+
 const getVideoThumbByCustomField = async (ObjectQuery) => {
   return VideoThumbnail.findOne(ObjectQuery);
+};
+
+const updateGeneratorVideosById = async (thumbnailId, thumbnailBody) => {
+  const videoThumbnail = await getGeneratorVideosById(thumbnailId);
+  Object.assign(videoThumbnail, thumbnailBody);
+
+  await videoThumbnail.save();
+  return videoThumbnail;
+};
+
+const deleteGeneratorVideosById = async (thumbnailId) => {
+  const videoThumbnail = await getGeneratorVideosById(thumbnailId);
+  await videoThumbnail.deleteOne();
+  return videoThumbnail;
 };
 
 const downloadVideo = async (url, outputPath) => {
@@ -113,4 +145,8 @@ const extractKeyFrames = async (videoPath, outputDir, frameCount = 5) => {
 
 module.exports = {
   createGeneratorVideo,
+  getGeneratorVideos,
+  getGeneratorVideosById,
+  updateGeneratorVideosById,
+  deleteGeneratorVideosById,
 };
