@@ -27,7 +27,9 @@ const getGeneratorVideos = catchAsync(async (req, res) => {
 
 const getGeneratorVideo = catchAsync(async (req, res) => {
   const result = await videoService.getGeneratorVideosById(req.params.videoId);
-
+  if (!result ) {
+    throw new apiError(httpStatus.NOT_FOUND, 'Video thumbnail not found');
+  }
   res.status(httpStatus.OK).send(result);
 });
 
@@ -73,7 +75,9 @@ const getExtractorVideos = catchAsync(async (req, res) => {
 
 const getExtractorVideo = catchAsync(async (req, res) => {
   const result = await videoService.getExtractorVideosById(req.params.videoId);
-
+  if (!result ) {
+    throw new apiError(httpStatus.NOT_FOUND, 'Video extractor metadata not found');
+  }
   res.status(httpStatus.OK).send(result);
 });
 

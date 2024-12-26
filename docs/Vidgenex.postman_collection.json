@@ -1,0 +1,931 @@
+{
+	"info": {
+		"_postman_id": "67115f8c-4a5d-4e44-b18e-c13c44ad699c",
+		"name": "Vidgenex",
+		"description": "A repository for engine video generator and extractor, which provides a simple way to generate and extract videos from given engine. This repository provides a simple command-line interface for generating and extracting videos from given engine. The engine can be any type of data source, such as a database or a set of video files. The output of the generator can be a video file or a set of video frames. The extractor can extract video frames from the given video file or set of video frames.\n\ncreated by : risyandi (https://risyandi.com/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35098454"
+	},
+	"item": [
+		{
+			"name": "generator",
+			"item": [
+				{
+					"name": "create-thumbnail-video",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\", // your url video\r\n    \"frameCount\": 5 // select how many frame you will be select\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/generator",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"generator"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\", // your url video\r\n    \"frameCount\": 5 // select how many frame you will be select\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "url-vidgenex-local/api/v1/video/generator",
+									"host": [
+										"url-vidgenex-local"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"generator"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "350"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15e-dQlOpbPUhUtZhLc87mJ/SHqEm+8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:51:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\",\n    \"thumbnailPath\": \"assets\\\\thumbnail\\\\78a8afff517bfa3d921881a7f0b01a38\\\\thumbnail.gif\",\n    \"videoPath\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n    \"createdAt\": \"2024-12-26T08:51:00.683Z\",\n    \"updatedAt\": \"2024-12-26T08:51:00.683Z\",\n    \"id\": \"676d18f4790163c6aa382047\"\n}"
+						},
+						{
+							"name": "error-duplicate-upload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\", // your url video\r\n    \"frameCount\": 5 // select how many frame you will be select\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url-vidgenex-local}}/api/v1/video/generator",
+									"host": [
+										"{{url-vidgenex-local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"generator"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-R+f5mKLbgNbokyNxLNVp7g+RVzY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:51:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"message\": \"Error generating video thumbnail: Your video has already been generated. Thumbnail: assets\\\\thumbnail\\\\78a8afff517bfa3d921881a7f0b01a38\\\\thumbnail.gif\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get-thumbnail-video-byid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/generator/:videoId",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"generator",
+								":videoId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "676c3b39b9466c4d40e5e383"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "notfound-data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "url-vidgenex-local/api/v1/video/generator/:videoId",
+									"host": [
+										"url-vidgenex-local"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"generator",
+										":videoId"
+									],
+									"variable": [
+										{
+											"key": "videoId",
+											"value": "676c3b39b9466c4d40e5e383"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32-KZNdOQ3NARE/uOvGIs2RPoPrIzg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:54:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 404,\n    \"message\": \"Video thumbnail not found\"\n}"
+						},
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url-vidgenex-local}}/api/v1/video/generator/:videoId",
+									"host": [
+										"{{url-vidgenex-local}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"generator",
+										":videoId"
+									],
+									"variable": [
+										{
+											"key": "videoId",
+											"value": "676d18f4790163c6aa382047"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "350"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15e-dQlOpbPUhUtZhLc87mJ/SHqEm+8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:54:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\",\n    \"thumbnailPath\": \"assets\\\\thumbnail\\\\78a8afff517bfa3d921881a7f0b01a38\\\\thumbnail.gif\",\n    \"videoPath\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n    \"createdAt\": \"2024-12-26T08:51:00.683Z\",\n    \"updatedAt\": \"2024-12-26T08:51:00.683Z\",\n    \"id\": \"676d18f4790163c6aa382047\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get-thumbnail-video",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/generator",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"generator"
+							],
+							"query": [
+								{
+									"key": "videoUrl",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "thumbnailPath",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "videoPath",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "url-vidgenex-local/api/v1/video/generator",
+									"host": [
+										"url-vidgenex-local"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"generator"
+									],
+									"query": [
+										{
+											"key": "videoUrl",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "thumbnailPath",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "videoPath",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "430"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ae-olLGydGza0P1ZfR9EBt6FZpIwjA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:54:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"results\": [\n        {\n            \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\",\n            \"thumbnailPath\": \"assets\\\\thumbnail\\\\78a8afff517bfa3d921881a7f0b01a38\\\\thumbnail.gif\",\n            \"videoPath\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n            \"createdAt\": \"2024-12-26T08:51:00.683Z\",\n            \"updatedAt\": \"2024-12-26T08:51:00.683Z\",\n            \"id\": \"676d18f4790163c6aa382047\"\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 10,\n    \"totalPages\": 1,\n    \"totalResults\": 1,\n    \"totalData\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "update-thumbnail-video-byid",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"videoUrl\": \"sss\",\r\n    \"thumbnailPath\": \"\",\r\n    \"videoPath\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/generator/:videoId",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"generator",
+								":videoId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "676c3b39b9466c4d40e5e383"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-thumbnail-video-byid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/generator/:videoId",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"generator",
+								":videoId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "676c3b39b9466c4d40e5e383"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Generator thumbnail .gif format, from url video."
+		},
+		{
+			"name": "extractor",
+			"item": [
+				{
+					"name": "create-extractor-video",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\" // your url video\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/extractor",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"extractor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"videoUrl\": \"https://www.sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4\" // your url video\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "url-vidgenex-local/api/v1/video/extractor",
+									"host": [
+										"url-vidgenex-local"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"extractor"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1810"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"712-/Lp2qP6N56IvSM8FO8AEb+HWWG8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:55:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"videoPath\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n    \"metadata\": {\n        \"streams\": [\n            {\n                \"index\": 0,\n                \"codec_name\": \"h264\",\n                \"codec_long_name\": \"H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10\",\n                \"profile\": \"Main\",\n                \"codec_type\": \"video\",\n                \"codec_tag_string\": \"avc1\",\n                \"codec_tag\": \"0x31637661\",\n                \"id\": \"0x1\",\n                \"r_frame_rate\": \"25/1\",\n                \"avg_frame_rate\": \"25/1\",\n                \"time_base\": \"1/12800\",\n                \"start_pts\": 0,\n                \"start_time\": 0,\n                \"duration_ts\": 67584,\n                \"duration\": 5.28,\n                \"bit_rate\": 1205959,\n                \"max_bit_rate\": \"N/A\",\n                \"bits_per_raw_sample\": 8,\n                \"nb_frames\": 132,\n                \"nb_read_frames\": \"N/A\",\n                \"nb_read_packets\": \"N/A\",\n                \"extradata_size\": 38\n            },\n            {\n                \"index\": 1,\n                \"codec_name\": \"aac\",\n                \"codec_long_name\": \"AAC (Advanced Audio Coding)\",\n                \"profile\": \"LC\",\n                \"codec_type\": \"audio\",\n                \"codec_tag_string\": \"mp4a\",\n                \"codec_tag\": \"0x6134706d\",\n                \"sample_fmt\": \"fltp\",\n                \"sample_rate\": 48000,\n                \"channels\": 6,\n                \"channel_layout\": 5.1,\n                \"bits_per_sample\": 0,\n                \"initial_padding\": 0,\n                \"id\": \"0x2\",\n                \"r_frame_rate\": \"0/0\",\n                \"avg_frame_rate\": \"0/0\",\n                \"time_base\": \"1/48000\",\n                \"start_pts\": 0,\n                \"start_time\": 0,\n                \"duration_ts\": 254976,\n                \"duration\": 5.312,\n                \"bit_rate\": 384828,\n                \"max_bit_rate\": \"N/A\",\n                \"bits_per_raw_sample\": \"N/A\",\n                \"nb_frames\": 249,\n                \"nb_read_frames\": \"N/A\",\n                \"nb_read_packets\": \"N/A\",\n                \"extradata_size\": 2\n            }\n        ],\n        \"format\": {\n            \"filename\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n            \"nb_streams\": 2,\n            \"nb_programs\": 0,\n            \"nb_stream_groups\": 0,\n            \"format_name\": \"mov,mp4,m4a,3gp,3g2,mj2\",\n            \"format_long_name\": \"QuickTime / MOV\",\n            \"start_time\": 0,\n            \"duration\": 5.312,\n            \"size\": 1055736,\n            \"bit_rate\": 1589963,\n            \"probe_score\": 100,\n            \"tags\": {\n                \"major_brand\": \"isom\",\n                \"minor_version\": \"512\",\n                \"compatible_brands\": \"isomiso2avc1mp41\",\n                \"creation_time\": \"1970-01-01T00:00:00.000000Z\",\n                \"encoder\": \"Lavf53.24.2\"\n            }\n        },\n        \"_id\": \"676d19f3c9db4ee0e1847610\",\n        \"createdAt\": \"2024-12-26T08:55:15.554Z\",\n        \"updatedAt\": \"2024-12-26T08:55:15.554Z\"\n    },\n    \"createdAt\": \"2024-12-26T08:55:15.554Z\",\n    \"updatedAt\": \"2024-12-26T08:55:15.554Z\",\n    \"id\": \"676d19f3c9db4ee0e184760f\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get-extractor-video-byid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/extractor/:videoId",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"extractor",
+								":videoId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "676c3b39b9466c4d40e5e383"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "url-vidgenex-local/api/v1/video/extractor/:videoId",
+									"host": [
+										"url-vidgenex-local"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"extractor",
+										":videoId"
+									],
+									"variable": [
+										{
+											"key": "videoId",
+											"value": "676d19f3c9db4ee0e184760f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1810"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"712-/Lp2qP6N56IvSM8FO8AEb+HWWG8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:55:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"videoPath\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n    \"metadata\": {\n        \"streams\": [\n            {\n                \"index\": 0,\n                \"codec_name\": \"h264\",\n                \"codec_long_name\": \"H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10\",\n                \"profile\": \"Main\",\n                \"codec_type\": \"video\",\n                \"codec_tag_string\": \"avc1\",\n                \"codec_tag\": \"0x31637661\",\n                \"id\": \"0x1\",\n                \"r_frame_rate\": \"25/1\",\n                \"avg_frame_rate\": \"25/1\",\n                \"time_base\": \"1/12800\",\n                \"start_pts\": 0,\n                \"start_time\": 0,\n                \"duration_ts\": 67584,\n                \"duration\": 5.28,\n                \"bit_rate\": 1205959,\n                \"max_bit_rate\": \"N/A\",\n                \"bits_per_raw_sample\": 8,\n                \"nb_frames\": 132,\n                \"nb_read_frames\": \"N/A\",\n                \"nb_read_packets\": \"N/A\",\n                \"extradata_size\": 38\n            },\n            {\n                \"index\": 1,\n                \"codec_name\": \"aac\",\n                \"codec_long_name\": \"AAC (Advanced Audio Coding)\",\n                \"profile\": \"LC\",\n                \"codec_type\": \"audio\",\n                \"codec_tag_string\": \"mp4a\",\n                \"codec_tag\": \"0x6134706d\",\n                \"sample_fmt\": \"fltp\",\n                \"sample_rate\": 48000,\n                \"channels\": 6,\n                \"channel_layout\": 5.1,\n                \"bits_per_sample\": 0,\n                \"initial_padding\": 0,\n                \"id\": \"0x2\",\n                \"r_frame_rate\": \"0/0\",\n                \"avg_frame_rate\": \"0/0\",\n                \"time_base\": \"1/48000\",\n                \"start_pts\": 0,\n                \"start_time\": 0,\n                \"duration_ts\": 254976,\n                \"duration\": 5.312,\n                \"bit_rate\": 384828,\n                \"max_bit_rate\": \"N/A\",\n                \"bits_per_raw_sample\": \"N/A\",\n                \"nb_frames\": 249,\n                \"nb_read_frames\": \"N/A\",\n                \"nb_read_packets\": \"N/A\",\n                \"extradata_size\": 2\n            }\n        ],\n        \"format\": {\n            \"filename\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n            \"nb_streams\": 2,\n            \"nb_programs\": 0,\n            \"nb_stream_groups\": 0,\n            \"format_name\": \"mov,mp4,m4a,3gp,3g2,mj2\",\n            \"format_long_name\": \"QuickTime / MOV\",\n            \"start_time\": 0,\n            \"duration\": 5.312,\n            \"size\": 1055736,\n            \"bit_rate\": 1589963,\n            \"probe_score\": 100,\n            \"tags\": {\n                \"major_brand\": \"isom\",\n                \"minor_version\": \"512\",\n                \"compatible_brands\": \"isomiso2avc1mp41\",\n                \"creation_time\": \"1970-01-01T00:00:00.000000Z\",\n                \"encoder\": \"Lavf53.24.2\"\n            }\n        },\n        \"_id\": \"676d19f3c9db4ee0e1847610\",\n        \"createdAt\": \"2024-12-26T08:55:15.554Z\",\n        \"updatedAt\": \"2024-12-26T08:55:15.554Z\"\n    },\n    \"createdAt\": \"2024-12-26T08:55:15.554Z\",\n    \"updatedAt\": \"2024-12-26T08:55:15.554Z\",\n    \"id\": \"676d19f3c9db4ee0e184760f\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get-extractor-video",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/extractor",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"extractor"
+							],
+							"query": [
+								{
+									"key": "videoPath",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "url-vidgenex-local/api/v1/video/extractor",
+									"host": [
+										"url-vidgenex-local"
+									],
+									"path": [
+										"api",
+										"v1",
+										"video",
+										"extractor"
+									],
+									"query": [
+										{
+											"key": "videoPath",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1890"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"762-6qQpypzEpe7jY/rW7twBRfbwpZc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 Dec 2024 08:55:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"results\": [\n        {\n            \"videoPath\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n            \"metadata\": {\n                \"streams\": [\n                    {\n                        \"index\": 0,\n                        \"codec_name\": \"h264\",\n                        \"codec_long_name\": \"H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10\",\n                        \"profile\": \"Main\",\n                        \"codec_type\": \"video\",\n                        \"codec_tag_string\": \"avc1\",\n                        \"codec_tag\": \"0x31637661\",\n                        \"id\": \"0x1\",\n                        \"r_frame_rate\": \"25/1\",\n                        \"avg_frame_rate\": \"25/1\",\n                        \"time_base\": \"1/12800\",\n                        \"start_pts\": 0,\n                        \"start_time\": 0,\n                        \"duration_ts\": 67584,\n                        \"duration\": 5.28,\n                        \"bit_rate\": 1205959,\n                        \"max_bit_rate\": \"N/A\",\n                        \"bits_per_raw_sample\": 8,\n                        \"nb_frames\": 132,\n                        \"nb_read_frames\": \"N/A\",\n                        \"nb_read_packets\": \"N/A\",\n                        \"extradata_size\": 38\n                    },\n                    {\n                        \"index\": 1,\n                        \"codec_name\": \"aac\",\n                        \"codec_long_name\": \"AAC (Advanced Audio Coding)\",\n                        \"profile\": \"LC\",\n                        \"codec_type\": \"audio\",\n                        \"codec_tag_string\": \"mp4a\",\n                        \"codec_tag\": \"0x6134706d\",\n                        \"sample_fmt\": \"fltp\",\n                        \"sample_rate\": 48000,\n                        \"channels\": 6,\n                        \"channel_layout\": 5.1,\n                        \"bits_per_sample\": 0,\n                        \"initial_padding\": 0,\n                        \"id\": \"0x2\",\n                        \"r_frame_rate\": \"0/0\",\n                        \"avg_frame_rate\": \"0/0\",\n                        \"time_base\": \"1/48000\",\n                        \"start_pts\": 0,\n                        \"start_time\": 0,\n                        \"duration_ts\": 254976,\n                        \"duration\": 5.312,\n                        \"bit_rate\": 384828,\n                        \"max_bit_rate\": \"N/A\",\n                        \"bits_per_raw_sample\": \"N/A\",\n                        \"nb_frames\": 249,\n                        \"nb_read_frames\": \"N/A\",\n                        \"nb_read_packets\": \"N/A\",\n                        \"extradata_size\": 2\n                    }\n                ],\n                \"format\": {\n                    \"filename\": \"assets\\\\video\\\\78a8afff517bfa3d921881a7f0b01a38.mp4\",\n                    \"nb_streams\": 2,\n                    \"nb_programs\": 0,\n                    \"nb_stream_groups\": 0,\n                    \"format_name\": \"mov,mp4,m4a,3gp,3g2,mj2\",\n                    \"format_long_name\": \"QuickTime / MOV\",\n                    \"start_time\": 0,\n                    \"duration\": 5.312,\n                    \"size\": 1055736,\n                    \"bit_rate\": 1589963,\n                    \"probe_score\": 100,\n                    \"tags\": {\n                        \"major_brand\": \"isom\",\n                        \"minor_version\": \"512\",\n                        \"compatible_brands\": \"isomiso2avc1mp41\",\n                        \"creation_time\": \"1970-01-01T00:00:00.000000Z\",\n                        \"encoder\": \"Lavf53.24.2\"\n                    }\n                },\n                \"_id\": \"676d19f3c9db4ee0e1847610\",\n                \"createdAt\": \"2024-12-26T08:55:15.554Z\",\n                \"updatedAt\": \"2024-12-26T08:55:15.554Z\"\n            },\n            \"createdAt\": \"2024-12-26T08:55:15.554Z\",\n            \"updatedAt\": \"2024-12-26T08:55:15.554Z\",\n            \"id\": \"676d19f3c9db4ee0e184760f\"\n        }\n    ],\n    \"page\": 1,\n    \"limit\": 10,\n    \"totalPages\": 1,\n    \"totalResults\": 1,\n    \"totalData\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "update-extractor-video-byid",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"videoUrl\": \"sss\",\r\n    \"thumbnailPath\": \"\",\r\n    \"videoPath\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/extractor/:videoId",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"extractor",
+								":videoId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "676c3b39b9466c4d40e5e383"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-extractor-video-byid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url-vidgenex-local}}/api/v1/video/extractor/:videoId",
+							"host": [
+								"{{url-vidgenex-local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video",
+								"extractor",
+								":videoId"
+							],
+							"variable": [
+								{
+									"key": "videoId",
+									"value": "676c3b39b9466c4d40e5e383"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "extractor detail metadata in file video."
+		}
+	]
+}
