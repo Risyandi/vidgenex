@@ -52,3 +52,7 @@ To checking and try the endpoint API, you can following this steps:
 
 1. Download file collection in folder `docs`
 2. Open your `Postman` apps, and then import your file previously downloaded to your postman.
+
+## Demo Vidgenex
+
+![vidgenex demo](./docs/vidgenex.gif)
